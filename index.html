@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ofertas de AliExpress</title>
+    <!-- Incluye Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+
+        /* Estilos para el modal overlay */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 50;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            position: relative;
+            background-color: transparent; /* No hay fondo para la imagen */
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .modal-overlay.open .modal-content {
+            transform: scale(1);
+        }
+
+        /* Botón de cerrar con animación */
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 40px;
+            height: 40px;
+            background-color: #ffffff;
+            border: 2px solid #e5e7eb;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            color: #4b5563;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            z-index: 60;
+        }
+
+        .close-button:hover {
+            background-color: #f3f4f6;
+            color: #1f2937;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 p-4 sm:p-8">
+
+    <!-- Encabezado de la página -->
+    <header class="text-center mb-8">
+        <h1 class="text-4xl sm:text-5xl font-extrabold text-blue-800 leading-tight">
+            ¡Mejores Recomendaciones de Productos en Oferta!
+        </h1>
+        <p class="text-lg sm:text-xl text-gray-600 mt-2 max-w-2xl mx-auto">
+            Descubre las ofertas más increíbles directamente desde AliExpress. ¡Ahorra en grande en tus compras favoritas!
+        </p>
+    </header>
+
+    <!-- Sección de productos -->
+    <main class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
+        <!-- Tarjeta de Producto 1: Coches de Disney Pixar -->
+        <div id="product-card-1" class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-200">
+            <div class="p-4 pb-0">
+                <!-- Imagen principal -->
+                <div class="relative h-64 sm:h-72 overflow-hidden bg-gray-50 rounded-xl mb-4">
+                    <img src="https://i.postimg.cc/Gt0vKhHc/S141cc723f31d480c87b2d883e446f73e2.png" alt="Caja de regalo de coches de Disney Pixar" class="main-image w-full h-full object-contain transition-transform duration-500 ease-in-out cursor-pointer" data-product-id="1" onerror="this.src='https://placehold.co/400x400/E2E8F0/94A3B8?text=Img'">
+                </div>
+
+                <!-- Carrusel de miniaturas -->
+                <div class="flex space-x-1 overflow-x-auto justify-center pb-2">
+                    <img src="https://i.postimg.cc/Gt0vKhHc/S141cc723f31d480c87b2d883e446f73e2.png" data-full="https://i.postimg.cc/Gt0vKhHc/S141cc723f31d480c87b2d883e446f73e2.png" class="thumbnail-image w-12 h-12 rounded-lg object-cover cursor-pointer hover:opacity-80 transition-opacity" onerror="this.src='https://placehold.co/48x48/E2E8F0/94A3B8?text=Img'" data-product-id="1">
+                    <img src="https://i.postimg.cc/pT5DKnVG/S5a5706c5800246b59c71ef441d58cbc67.png" data-full="https://i.postimg.cc/pT5DKnVG/S5a5706c5800246b59c71ef441d58cbc67.png" class="thumbnail-image w-12 h-12 rounded-lg object-cover cursor-pointer hover:opacity-80 transition-opacity" onerror="this.src='https://placehold.co/48x48/E2E8F0/94A3B8?text=Img'" data-product-id="1">
+                    <img src="https://i.postimg.cc/q75stGr6/S676e65c918ae4b6e98a88f3f940ac9e0-Y.png" data-full="https://i.postimg.cc/q75stGr6/S676e65c918ae4b6e98a88f3f940ac9e0-Y.png" class="thumbnail-image w-12 h-12 rounded-lg object-cover cursor-pointer hover:opacity-80 transition-opacity" onerror="this.src='https://placehold.co/48x48/E2E8F0/94A3B8?text=Img'" data-product-id="1">
+                    <img src="https://i.postimg.cc/tJhWMQxF/S6f71f14854a84c22b5b0f84d71e939e2-S.png" data-full="https://i.postimg.cc/tJhWMQxF/S6f71f14854a84c22b5b0f84d71e939e2-S.png" class="thumbnail-image w-12 h-12 rounded-lg object-cover cursor-pointer hover:opacity-80 transition-opacity" onerror="this.src='https://placehold.co/48x48/E2E8F0/94A3B8?text=Img'" data-product-id="1">
+                    <img src="https://i.postimg.cc/ZY38R3M0/S924be74515654c448873c091997ac2d1-K.png" data-full="https://i.postimg.cc/ZY38R3M0/S924be74515654c448873c091997ac2d1-K.png" class="thumbnail-image w-12 h-12 rounded-lg object-cover cursor-pointer hover:opacity-80 transition-opacity" onerror="this.src='https://placehold.co/48x48/E2E8F0/94A3B8?text=Img'" data-product-id="1">
+                    <img src="https://i.postimg.cc/qMT8CRPw/Sad12d6e7cb56485b9aba156d8c8112959.png" data-full="https://i.postimg.cc/qMT8CRPw/Sad12d6e7cb56485b9aba156d8c8112959.png" class="thumbnail-image w-12 h-12 rounded-lg object-cover cursor-pointer hover:opacity-80 transition-opacity" onerror="this.src='https://placehold.co/48x48/E2E8F0/94A3B8?text=Img'" data-product-id="1">
+                </div>
+            </div>
+
+            <div class="p-5">
+                <!-- Título del producto -->
+                <h2 class="text-xl font-semibold mb-2 leading-snug">Caja de regalo de coches de Disney Pixar, 8/13/15 Uds., Metal fundido a presión</h2>
+
+                <!-- Detalles del precio -->
+                <div class="flex items-center justify-start gap-3 mt-4">
+                    <span class="text-2xl font-bold text-red-500">
+                        MXN 570.63
+                    </span>
+                    <span class="text-lg text-gray-400 line-through">
+                        MXN 2501.08
+                    </span>
+                </div>
+                <div class="text-green-600 font-bold text-sm mt-1">
+                    ¡77% de descuento!
+                </div>
+
+                <!-- Botón de compra -->
+                <a href="https://s.click.aliexpress.com/e/_olB7OjT" target="_blank" class="mt-6 w-full inline-flex items-center justify-center bg-blue-600 text-white font-bold py-3 px-6 rounded-full text-lg shadow-md hover:bg-blue-700 transition-colors duration-300 transform hover:scale-105">
+                    Comprar Ahora
+                    <!-- Icono de flecha SVG -->
+                    <svg class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- Tarjeta de Producto 2: Proyector Magcubic HY300 Pro -->
+        <div id="product-card-2" class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-200">
+            <div class="p-4 pb-0">
+                <!-- Imagen principal -->
+                <div class="relative h-64 sm:h-72 overflow-hidden bg-gray-50 rounded-xl mb-4">
+                    <img src="https://i.postimg.cc/dLJBBQN7/S3aebd6c9581d4fc9b9deae04c413fa8c-I.png" alt="Proyector Magcubic HY300 Pro" class="main-image w-full h-full object-contain transition-transform duration-500 ease-in-out cursor-pointer" data-product-id="2" onerror="this.src='https://placehold.co/400x400/E2E8F0/94A3B8?text=Img'">
+                </div>
+
+                <!-- Carrusel de miniaturas -->
+                <div class="flex space-x-1 overflow-x-auto justify-center pb-2">
+                    <img src="https://i.postimg.cc/5yZKwVMv/S1fa40515823a4ead8213869e6c06f6e57.png" data-full="https://i.postimg.cc/5yZKwVMv/S1fa40515823a4ead8213869e6c06f6e57.png" class="thumbnail-image w-12 h-12 rounded-lg object-cover cursor-pointer hover:opacity-80 transition-opacity" onerror="this.src='https://placehold.co/48x48/E2E8F0/94A3B8?text=Img'" data-product-id="2">
+                    <img src="https://i.postimg.cc/zGYPv87Y/S24a3fa69225843cd83400f5b06b46c893.png" data-full="https://i.postimg.cc/zGYPv87Y/S24a3fa69225843cd83400f5b06b46c893.png" class="thumbnail-image w-12 h-12 rounded-lg object-cover cursor-pointer hover:opacity-80 transition-opacity" onerror="this.src='https://placehold.co/48x48/E2E8F0/94A3B8?text=Img'" data-product-id="2">
+                    <img src="https://i.postimg.cc/MZ4LkyjT/S4ccd640b81154ca3bbe5d22491de4e64-O.png" data-full="https://i.postimg.cc/MZ4LkyjT/S4ccd640b81154ca3bbe5d22491de4e64-O.png" class="thumbnail-image w-12 h-12 rounded-lg object-cover cursor-pointer hover:opacity-80 transition-opacity" onerror="this.src='https://placehold.co/48x48/E2E8F0/94A3B8?text=Img'" data-product-id="2">
+                    <img src="https://i.postimg.cc/K87pgwpk/Sadbd14e8b70048908c2154e2923d3924.png" data-full="https://i.postimg.cc/K87pgwpk/Sadbd14e8b700489098c2154e2923d3924.png" class="thumbnail-image w-12 h-12 rounded-lg object-cover cursor-pointer hover:opacity-80 transition-opacity" onerror="this.src='https://placehold.co/48x48/E2E8F0/94A3B8?text=Img'" data-product-id="2">
+                    <img src="https://i.postimg.cc/q7kbcwWm/Sd7f8fe1ca193425bb7c588148bebaeb9-Y.png" data-full="https://i.postimg.cc/q7kbcwWm/Sd7f8fe1ca193425bb7c588148bebaeb9-Y.png" class="thumbnail-image w-12 h-12 rounded-lg object-cover cursor-pointer hover:opacity-80 transition-opacity" onerror="this.src='https://placehold.co/48x48/E2E8F0/94A3B8?text=Img'" data-product-id="2">
+                </div>
+            </div>
+
+            <div class="p-5">
+                <!-- Título del producto -->
+                <h2 class="text-xl font-semibold mb-2 leading-snug">Proyector Magcubic HY300 Pro 4K Android 11 Dual Wifi6 290ANSI Allwinner H713 BT5.0 1080P</h2>
+
+                <!-- Detalles del precio -->
+                <div class="flex items-center justify-start gap-3 mt-4">
+                    <span class="text-2xl font-bold text-red-500">
+                        MXN 488.70
+                    </span>
+                    <span class="text-lg text-gray-400 line-through">
+                        MXN 2111.61
+                    </span>
+                </div>
+                <div class="text-green-600 font-bold text-sm mt-1">
+                    ¡77% de descuento!
+                </div>
+
+                <!-- Botón de compra -->
+                <a href="https://s.click.aliexpress.com/e/_olcSGZf" target="_blank" class="mt-6 w-full inline-flex items-center justify-center bg-blue-600 text-white font-bold py-3 px-6 rounded-full text-lg shadow-md hover:bg-blue-700 transition-colors duration-300 transform hover:scale-105">
+                    Comprar Ahora
+                    <!-- Icono de flecha SVG -->
+                    <svg class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- Tarjeta de Producto 3: Tubo bucal de ortodoncia Dental AZDENT -->
+        <div id="product-card-3" class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-200">
+            <div class="p-4 pb-0">
+                <!-- Imagen principal -->
+                <div class="relative h-64 sm:h-72 overflow-hidden bg-gray-50 rounded-xl mb-4">
+                    <img src="https://i.postimg.cc/kXvh2LpV/H46bd37c0ad1d4bae9f87bebfd7b7843de.png" alt="AZDENT 200 unids/caja tubo bucal de ortodoncia Dental" class="main-image w-full h-full object-contain transition-transform duration-500 ease-in-out cursor-pointer" data-product-id="3" onerror="this.src='https://placehold.co/400x400/E2E8F0/94A3B8?text=Img'">
+                </div>
+
+                <!-- Carrusel de miniaturas -->
+                <div class="flex space-x-1 overflow-x-auto justify-center pb-2">
+                    <img src="https://i.postimg.cc/kXvh2LpV/H46bd37c0ad1d4bae9f87bebfd7b7843de.png" data-full="https://i.postimg.cc/kXvh2LpV/H46bd37c0ad1d4bae9f87bebfd7b7843de.png" class="thumbnail-image w-12 h-12 rounded-lg object-cover cursor-pointer hover:opacity-80 transition-opacity" onerror="this.src='https://placehold.co/48x48/E2E8F0/94A3B8?text=Img'" data-product-id="3">
+                    <img src="https://i.postimg.cc/s2vn0xDS/H78eb9ea66fb8484eae91fa33f9adfb3bl.png" data-full="https://i.postimg.cc/s2vn0xDS/H78eb9ea66fb8484eae91fa33f9adfb3bl.png" class="thumbnail-image w-12 h-12 rounded-lg object-cover cursor-pointer hover:opacity-80 transition-opacity" onerror="this.src='https://placehold.co/48x48/E2E8F0/94A3B8?text=Img'" data-product-id="3">
+                    <img src="https://i.postimg.cc/8zkXMw2Z/H80bec3a3730d4b24a8f665d3431fb465-I.png" data-full="https://i.postimg.cc/8zkXMw2Z/H80bec3a3730d4b24a8f665d3431fb465-I.png" class="thumbnail-image w-12 h-12 rounded-lg object-cover cursor-pointer hover:opacity-80 transition-opacity" onerror="this.src='https://placehold.co/48x48/E2E8F0/94A3B8?text=Img'" data-product-id="3">
+                    <img src="https://i.postimg.cc/P5634YhT/Hf5bdc59f651946f3b0593ee299289fee-K.png" data-full="https://i.postimg.cc/P5634YhT/Hf5bdc59f651946f3b0593ee299289fee-K.png" class="thumbnail-image w-12 h-12 rounded-lg object-cover cursor-pointer hover:opacity-80 transition-opacity" onerror="this.src='https://placehold.co/48x48/E2E8F0/94A3B8?text=Img'" data-product-id="3">
+                    <img src="https://i.postimg.cc/W4C9RVhy/Hff35b146f42447fb8bfe6467dacb748b-Q.png" data-full="https://i.postimg.cc/W4C9RVhy/Hff35b146f42447fb8bfe6467dacb748b-Q.png" class="thumbnail-image w-12 h-12 rounded-lg object-cover cursor-pointer hover:opacity-80 transition-opacity" onerror="this.src='https://placehold.co/48x48/E2E8F0/94A3B8?text=Img'" data-product-id="3">
+                    <img src="https://i.postimg.cc/Twbtfsb3/S9610ff6e87544f43b8d7a88167bb01768.png" data-full="https://i.postimg.cc/Twbtfsb3/S9610ff6e87544f43b8d7a88167bb01768.png" class="thumbnail-image w-12 h-12 rounded-lg object-cover cursor-pointer hover:opacity-80 transition-opacity" onerror="this.src='https://placehold.co/48x48/E2E8F0/94A3B8?text=Img'" data-product-id="3">
+                </div>
+            </div>
+
+            <div class="p-5">
+                <!-- Título del producto -->
+                <h2 class="text-xl font-semibold mb-2 leading-snug">AZDENT 200 unids/caja tubo bucal de ortodoncia Dental 1. ° 2. ° molar</h2>
+
+                <!-- Detalles del precio -->
+                <div class="flex items-center justify-start gap-3 mt-4">
+                    <span class="text-2xl font-bold text-red-500">
+                        MXN 510.52
+                    </span>
+                    <span class="text-lg text-gray-400 line-through">
+                        MXN 654.75
+                    </span>
+                </div>
+                <div class="text-green-600 font-bold text-sm mt-1">
+                    ¡22% de descuento!
+                </div>
+
+                <!-- Botón de compra -->
+                <a href="https://s.click.aliexpress.com/e/_oo4OD53" target="_blank" class="mt-6 w-full inline-flex items-center justify-center bg-blue-600 text-white font-bold py-3 px-6 rounded-full text-lg shadow-md hover:bg-blue-700 transition-colors duration-300 transform hover:scale-105">
+                    Comprar Ahora
+                    <!-- Icono de flecha SVG -->
+                    <svg class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- Tarjeta de Producto 4: Proyector Magcubic -->
+        <div id="product-card-4" class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-200">
+            <div class="p-4 pb-0">
+                <!-- Imagen principal -->
+                <div class="relative h-64 sm:h-72 overflow-hidden bg-gray-50 rounded-xl mb-4">
+                    <img src="https://i.postimg.cc/D8bXL9nW/S743ad100f9c04c4c929f0e2b658b538a-A.png" alt="Proyector Magcubic" class="main-image w-full h-full object-contain transition-transform duration-500 ease-in-out cursor-pointer" data-product-id="4" onerror="this.src='https://placehold.co/400x400/E2E8F0/94A3B8?text=Img'">
+                </div>
+
+                <!-- Carrusel de miniaturas -->
+                <div class="flex space-x-1 overflow-x-auto justify-center pb-2">
+                    <img src="https://i.postimg.cc/D8bXL9nW/S743ad100f9c04c4c929f0e2b658b538a-A.png" data-full="https://i.postimg.cc/D8bXL9nW/S743ad100f9c04c4c929f0e2b658b538a-A.png" class="thumbnail-image w-12 h-12 rounded-lg object-cover cursor-pointer hover:opacity-80 transition-opacity" onerror="this.src='https://placehold.co/48x48/E2E8F0/94A3B8?text=Img'" data-product-id="4">
+                    <img src="https://i.postimg.cc/yDm3r0Js/S1ccdc736afe24a78904146fef22adb33-N.png" data-full="https://i.postimg.cc/yDm3r0Js/S1ccdc736afe24a78904146fef22adb33-N.png" class="thumbnail-image w-12 h-12 rounded-lg object-cover cursor-pointer hover:opacity-80 transition-opacity" onerror="this.src='https://placehold.co/48x48/E2E8F0/94A3B8?text=Img'" data-product-id="4">
+                    <img src="https://i.postimg.cc/rzH4dVXX/S23b2bc2cb7424fcbbef88a8bdf1c68b1-D.png" data-full="https://i.postimg.cc/rzH4dVXX/S23b2bc2cb7424fcbbef88a8bdf1c68b1-D.png" class="thumbnail-image w-12 h-12 rounded-lg object-cover cursor-pointer hover:opacity-80 transition-opacity" onerror="this.src='https://placehold.co/48x48/E2E8F0/94A3B8?text=Img'" data-product-id="4">
+                    <img src="https://i.postimg.cc/NKqr4djd/Sd2f127249c6d4e399ae5adc1cacc26b3o.png" data-full="https://i.postimg.cc/NKqr4djd/Sd2f127249c6d4e399ae5adc1cacc26b3o.png" class="thumbnail-image w-12 h-12 rounded-lg object-cover cursor-pointer hover:opacity-80 transition-opacity" onerror="this.src='https://placehold.co/48x48/E2E8F0/94A3B8?text=Img'" data-product-id="4">
+                    <img src="https://i.postimg.cc/Nyb9QY7n/Sefbddbeec3844ed7b50597ac20e3b524a.png" data-full="https://i.postimg.cc/Nyb9QY7n/Sefbddbeec3844ed7b50597ac20e3b524a.png" class="thumbnail-image w-12 h-12 rounded-lg object-cover cursor-pointer hover:opacity-80 transition-opacity" onerror="this.src='https://placehold.co/48x48/E2E8F0/94A3B8?text=Img'" data-product-id="4">
+                </div>
+            </div>
+
+            <div class="p-5">
+                <!-- Título del producto -->
+                <h2 class="text-xl font-semibold mb-2 leading-snug">Proyector Magcubic Android 11 4K 1280*720P HY300 Pro + Wifi Dual 290ANSI 180 ° Proyector portátil flexible para exteriores de cine BT5.0</h2>
+
+                <!-- Detalles del precio -->
+                <div class="flex items-center justify-start gap-3 mt-4">
+                    <span class="text-2xl font-bold text-red-500">
+                        MXN 620.63
+                    </span>
+                    <span class="text-lg text-gray-400 line-through">
+                        MXN 2067.55
+                    </span>
+                </div>
+                <div class="text-green-600 font-bold text-sm mt-1">
+                    ¡70% de descuento!
+                </div>
+
+                <!-- Botón de compra -->
+                <a href="https://s.click.aliexpress.com/e/_ooBo9OV" target="_blank" class="mt-6 w-full inline-flex items-center justify-center bg-blue-600 text-white font-bold py-3 px-6 rounded-full text-lg shadow-md hover:bg-blue-700 transition-colors duration-300 transform hover:scale-105">
+                    Comprar Ahora
+                    <!-- Icono de flecha SVG -->
+                    <svg class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- Tarjeta de Producto 5: Altavoz Anker Soundcore Motion+ -->
+        <div id="product-card-5" class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-200">
+            <div class="p-4 pb-0">
+                <!-- Imagen principal -->
+                <div class="relative h-64 sm:h-72 overflow-hidden bg-gray-50 rounded-xl mb-4">
+                    <img src="https://i.postimg.cc/mhkXfgN0/H00f13ac51e24c70a8a7805c95416721-M.png" alt="Altavoz Anker Soundcore Motion+" class="main-image w-full h-full object-contain transition-transform duration-500 ease-in-out cursor-pointer" data-product-id="5" onerror="this.src='https://placehold.co/400x400/E2E8F0/94A3B8?text=Img'">
+                </div>
+
+                <!-- Carrusel de miniaturas -->
+                <div class="flex space-x-1 overflow-x-auto justify-center pb-2">
+                    <img src="https://i.postimg.cc/NLnNgvdL/H198a9cf0d5a3486e98de44edb9837b1b-J.png" data-full="https://i.postimg.cc/NLnNgvdL/H198a9cf0d5a3486e98de44edb9837b1b-J.png" class="thumbnail-image w-12 h-12 rounded-lg object-cover cursor-pointer hover:opacity-80 transition-opacity" onerror="this.src='https://placehold.co/48x48/E2E8F0/94A3B8?text=Img'" data-product-id="5">
+                    <img src="https://i.postimg.cc/zyZ0gSZr/H23971d1cec2c4b92937852d47aa9d855-Y.png" data-full="https://i.postimg.cc/zyZ0gSZr/H23971d1cec2c4b92937852d47aa9d855-Y.png" class="thumbnail-image w-12 h-12 rounded-lg object-cover cursor-pointer hover:opacity-80 transition-opacity" onerror="this.src='https://placehold.co/48x48/E2E8F0/94A3B8?text=Img'" data-product-id="5">
+                    <img src="https://i.postimg.cc/7GsKGFDs/H679c37146398465aa45fe9cf9c240675-X.png" data-full="https://i.postimg.cc/7GsKGFDs/H679c37146398465aa45fe9cf9c240675-X.png" class="thumbnail-image w-12 h-12 rounded-lg object-cover cursor-pointer hover:opacity-80 transition-opacity" onerror="this.src='https://placehold.co/48x48/E2E8F0/94A3B8?text=Img'" data-product-id="5">
+                    <img src="https://i.postimg.cc/m1P8Qmgb/H880c824ae0e843aabd945b93d81eda211.png" data-full="https://i.postimg.cc/m1P8Qmgb/H880c824ae0e843aabd945b93d81eda211.png" class="thumbnail-image w-12 h-12 rounded-lg object-cover cursor-pointer hover:opacity-80 transition-opacity" onerror="this.src='https://placehold.co/48x48/E2E8F0/94A3B8?text=Img'" data-product-id="5">
+                </div>
+            </div>
+
+            <div class="p-5">
+                <!-- Título del producto -->
+                <h2 class="text-xl font-semibold mb-2 leading-snug">Anker-altavoz Soundcore Motion +, reproductor de música Portátil con Bluetooth, alta resolución, 30W</h2>
+
+                <!-- Detalles del precio -->
+                <div class="flex items-center justify-start gap-3 mt-4">
+                    <span class="text-2xl font-bold text-red-500">
+                        MXN 1187.92
+                    </span>
+                    <span class="text-lg text-gray-400 line-through">
+                        MXN 2438.43
+                    </span>
+                </div>
+                <div class="text-green-600 font-bold text-sm mt-1">
+                    ¡51% de descuento!
+                </div>
+
+                <!-- Botón de compra -->
+                <a href="https://s.click.aliexpress.com/e/_okCArKd" target="_blank" class="mt-6 w-full inline-flex items-center justify-center bg-blue-600 text-white font-bold py-3 px-6 rounded-full text-lg shadow-md hover:bg-blue-700 transition-colors duration-300 transform hover:scale-105">
+                    Comprar Ahora
+                    <!-- Icono de flecha SVG -->
+                    <svg class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- Tarjeta de Producto 6: Consola Trimui Smart Pro -->
+        <div id="product-card-6" class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-200">
+            <div class="p-4 pb-0">
+                <!-- Imagen principal -->
+                <div class="relative h-64 sm:h-72 overflow-hidden bg-gray-50 rounded-xl mb-4">
+                    <img src="https://i.postimg.cc/xkjGv66W/S154d2cfa3734482c8c529ccc9622b44a-X.png" alt="Consola Trimui Smart Pro" class="main-image w-full h-full object-contain transition-transform duration-500 ease-in-out cursor-pointer" data-product-id="6" onerror="this.src='https://placehold.co/400x400/E2E8F0/94A3B8?text=Img'">
+                </div>
+
+                <!-- Carrusel de miniaturas -->
+                <div class="flex space-x-1 overflow-x-auto justify-center pb-2">
+                    <img src="https://i.postimg.cc/xkjGv66W/S154d2cfa373442c8c529ccc9622b44a-X.png" data-full="https://i.postimg.cc/xkjGv66W/S154d2cfa3734482c8c529ccc9622b44a-X.png" class="thumbnail-image w-12 h-12 rounded-lg object-cover cursor-pointer hover:opacity-80 transition-opacity" onerror="this.src='https://placehold.co/48x48/E2E8F0/94A3B8?text=Img'" data-product-id="6">
+                    <img src="https://i.postimg.cc/mPyN1vyY/S2c0b550a400e49199583b743aa4768e2h.png" data-full="https://i.postimg.cc/mPyN1vyY/S2c0b550a400e49199583b743aa4768e2h.png" class="thumbnail-image w-12 h-12 rounded-lg object-cover cursor-pointer hover:opacity-80 transition-opacity" onerror="this.src='https://placehold.co/48x48/E2E8F0/94A3B8?text=Img'" data-product-id="6">
+                    <img src="https://i.postimg.cc/gxWHJz8c/S56c240509ef7447dbbc8e699a8edce4ek.png" data-full="https://i.postimg.cc/gxWHJz8c/S56c240509ef7447dbbc8e699a8edce4ek.png" class="thumbnail-image w-12 h-12 rounded-lg object-cover cursor-pointer hover:opacity-80 transition-opacity" onerror="this.src='https://placehold.co/48x48/E2E8F0/94A3B8?text=Img'" data-product-id="6">
+                    <img src="https://i.postimg.cc/jwLz9L0c/Sb39709cd1fd545479b481746e431139aw.png" data-full="https://i.postimg.cc/jwLz9L0c/Sb39709cd1fd545479b481746e431139aw.png" class="thumbnail-image w-12 h-12 rounded-lg object-cover cursor-pointer hover:opacity-80 transition-opacity" onerror="this.src='https://placehold.co/48x48/E2E8F0/94A3B8?text=Img'" data-product-id="6">
+                    <img src="https://i.postimg.cc/R6ycz4vB/Scc2e8e031f3e4c2d9e9ed9284beb14a8-M.png" data-full="https://i.postimg.cc/R6ycz4vB/Scc2e8e031f3e4c2d9e9ed9284beb14a8-M.png" class="thumbnail-image w-12 h-12 rounded-lg object-cover cursor-pointer hover:opacity-80 transition-opacity" onerror="this.src='https://placehold.co/48x48/E2E8F0/94A3B8?text=Img'" data-product-id="6">
+                </div>
+            </div>
+
+            <div class="p-5">
+                <!-- Título del producto -->
+                <h2 class="text-xl font-semibold mb-2 leading-snug">Trimui Smart Pro consola de juegos portátil pantalla IPS de 4,96 pulgadas sistema Linux Joystick iluminación RGB Smartpro reproductor de videojuegos Retro regalo</h2>
+
+                <!-- Detalles del precio -->
+                <div class="flex items-center justify-start gap-3 mt-4">
+                    <span class="text-2xl font-bold text-red-500">
+                        MXN 889.65
+                    </span>
+                    <span class="text-lg text-gray-400 line-through">
+                        MXN 3897.45
+                    </span>
+                </div>
+                <div class="text-green-600 font-bold text-sm mt-1">
+                    ¡77% de descuento!
+                </div>
+
+                <!-- Botón de compra -->
+                <a href="https://s.click.aliexpress.com/e/_onXhaXL" target="_blank" class="mt-6 w-full inline-flex items-center justify-center bg-blue-600 text-white font-bold py-3 px-6 rounded-full text-lg shadow-md hover:bg-blue-700 transition-colors duration-300 transform hover:scale-105">
+                    Comprar Ahora
+                    <!-- Icono de flecha SVG -->
+                    <svg class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Tarjeta de Producto 7: UGREEN Dual HDMI USB-C HUB -->
+        <div id="product-card-7" class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-200">
+            <div class="p-4 pb-0">
+                <!-- Imagen principal -->
+                <div class="relative h-64 sm:h-72 overflow-hidden bg-gray-50 rounded-xl mb-4">
+                    <img src="https://i.postimg.cc/cgPsW460/S326498cd71474248a76b76a06ad5bbd41.png" alt="UGREEN Dual HDMI USB-C HUB" class="main-image w-full h-full object-contain transition-transform duration-500 ease-in-out cursor-pointer" data-product-id="7" onerror="this.src='https://placehold.co/400x400/E2E8F0/94A3B8?text=Img'">
+                </div>
+
+                <!-- Carrusel de miniaturas -->
+                <div class="flex space-x-1 overflow-x-auto justify-center pb-2">
+                    <img src="https://i.postimg.cc/cgPsW460/S326498cd71474248a76b76a06ad5bbd41.png" data-full="https://i.postimg.cc/cgPsW460/S326498cd71474248a76b76a06ad5bbd41.png" class="thumbnail-image w-12 h-12 rounded-lg object-cover cursor-pointer hover:opacity-80 transition-opacity" onerror="this.src='https://placehold.co/48x48/E2E8F0/94A3B8?text=Img'" data-product-id="7">
+                    <img src="https://i.postimg.cc/yJY6Xbw4/S40f23acf89e54ca7adba8703bc3d7884-Q.png" data-full="https://i.postimg.cc/yJY6Xbw4/S40f23acf89e54ca7adba8703bc3d7884-Q.png" class="thumbnail-image w-12 h-12 rounded-lg object-cover cursor-pointer hover:opacity-80 transition-opacity" onerror="this.src='https://placehold.co/48x48/E2E8F0/94A3B8?text=Img'" data-product-id="7">
+                    <img src="https://i.postimg.cc/pmBXjHcJ/S66e9ada2a05c461492ad56f724ba89bfg.png" data-full="https://i.postimg.cc/pmBXjHcJ/S66e9ada2a05c461492ad56f724ba89bfg.png" class="thumbnail-image w-12 h-12 rounded-lg object-cover cursor-pointer hover:opacity-80 transition-opacity" onerror="this.src='https://placehold.co/48x48/E2E8F0/94A3B8?text=Img'" data-product-id="7">
+                    <img src="https://i.postimg.cc/KKqG952K/Sa0d190172bc843caa51d9b606da683eb-Z.png" data-full="https://i.postimg.cc/KKqG952K/Sa0d190172bc843caa51d9b606da683eb-Z.png" class="thumbnail-image w-12 h-12 rounded-lg object-cover cursor-pointer hover:opacity-80 transition-opacity" onerror="this.src='https://placehold.co/48x48/E2E8F0/94A3B8?text=Img'" data-product-id="7">
+                    <img src="https://i.postimg.cc/64RBpJGR/Sc4fd866674a7440a95e8b5ac28d2f04by.png" data-full="https://i.postimg.cc/64RBpJGR/Sc4fd866674a7440a95e8b5ac28d2f04by.png" class="thumbnail-image w-12 h-12 rounded-lg object-cover cursor-pointer hover:opacity-80 transition-opacity" onerror="this.src='https://placehold.co/48x48/E2E8F0/94A3B8?text=Img'" data-product-id="7">
+                </div>
+            </div>
+
+            <div class="p-5">
+                <!-- Título del producto -->
+                <h2 class="text-xl font-semibold mb-2 leading-snug">UGREEN Dual HDMI USB-C HUB 8K 4K HDMI Adaptador 10 en 1 Divisor con RJ45 USB3.0 PD 100W Dock para MacBook Pro Air Laptop USB HUB</h2>
+
+                <!-- Detalles del precio -->
+                <div class="flex items-center justify-start gap-3 mt-4">
+                    <span class="text-2xl font-bold text-red-500">
+                        MXN 165.92
+                    </span>
+                    <span class="text-lg text-gray-400 line-through">
+                        MXN 441.26
+                    </span>
+                </div>
+                <div class="text-green-600 font-bold text-sm mt-1">
+                    ¡62% de descuento!
+                </div>
+
+                <!-- Botón de compra -->
+                <a href="https://s.click.aliexpress.com/e/_omcko5J" target="_blank" class="mt-6 w-full inline-flex items-center justify-center bg-blue-600 text-white font-bold py-3 px-6 rounded-full text-lg shadow-md hover:bg-blue-700 transition-colors duration-300 transform hover:scale-105">
+                    Comprar Ahora
+                    <!-- Icono de flecha SVG -->
+                    <svg class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Tarjeta de Producto 8: Consola de videojuegos R36S -->
+        <div id="product-card-8" class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-200">
+            <div class="p-4 pb-0">
+                <!-- Imagen principal -->
+                <div class="relative h-64 sm:h-72 overflow-hidden bg-gray-50 rounded-xl mb-4">
+                    <img src="https://i.postimg.cc/N9H318fv/S04815cfb43fc4d06b7ba82388adf16938.png" alt="Consola de videojuegos R36S de código abierto" class="main-image w-full h-full object-contain transition-transform duration-500 ease-in-out cursor-pointer" data-product-id="8" onerror="this.src='https://placehold.co/400x400/E2E8F0/94A3B8?text=Img'">
+                </div>
+
+                <!-- Carrusel de miniaturas -->
+                <div class="flex space-x-1 overflow-x-auto justify-center pb-2">
+                    <img src="https://i.postimg.cc/N9H318fv/S04815cfb43fc4d06b7ba82388adf16938.png" data-full="https://i.postimg.cc/N9H318fv/S04815cfb43fc4d06b7ba82388adf16938.png" class="thumbnail-image w-12 h-12 rounded-lg object-cover cursor-pointer hover:opacity-80 transition-opacity" onerror="this.src='https://placehold.co/48x48/E2E8F0/94A3B8?text=Img'" data-product-id="8">
+                    <img src="https://i.postimg.cc/bGWXDVPR/S3acc49c77f314cffa77949d6e9e264da-I.png" data-full="https://i.postimg.cc/bGWXDVPR/S3acc49c77f314cffa77949d6e9e264da-I.png" class="thumbnail-image w-12 h-12 rounded-lg object-cover cursor-pointer hover:opacity-80 transition-opacity" onerror="this.src='https://placehold.co/48x48/E2E8F0/94A3B8?text=Img'" data-product-id="8">
+                    <img src="https://i.postimg.cc/mPdWR26J/S433c99c6f51046a4996b7e4415ace4e3-S.png" data-full="https://i.postimg.cc/mPdWR26J/S433c99c6f51046a4996b7e4415ace4e3-S.png" class="thumbnail-image w-12 h-12 rounded-lg object-cover cursor-pointer hover:opacity-80 transition-opacity" onerror="this.src='https://placehold.co/48x48/E2E8F0/94A3B8?text=Img'" data-product-id="8">
+                    <img src="https://i.postimg.cc/mctfrfvD/S604bbce17486456c9248fc27f9519703m.png" data-full="https://i.postimg.cc/mctfrfvD/S604bbce17486456c9248fc27f9519703m.png" class="thumbnail-image w-12 h-12 rounded-lg object-cover cursor-pointer hover:opacity-80 transition-opacity" onerror="this.src='https://placehold.co/48x48/E2E8F0/94A3B8?text=Img'" data-product-id="8">
+                    <img src="https://i.postimg.cc/ZWYz1yj6/S986a7f572ad54b5aa5bcc4bf54f4f1ec-A.png" data-full="https://i.postimg.cc/ZWYz1yj6/S986a7f572ad54b5aa5bcc4bf54f4f1ec-A.png" class="thumbnail-image w-12 h-12 rounded-lg object-cover cursor-pointer hover:opacity-80 transition-opacity" onerror="this.src='https://placehold.co/48x48/E2E8F0/94A3B8?text=Img'" data-product-id="8">
+                    <img src="https://i.postimg.cc/fSQ653Jt/Sf190e3b18da54241b12d5d886617a221.png" data-full="https://i.postimg.cc/fSQ653Jt/Sf190e3b18da54241b12d5d886617a221.png" class="thumbnail-image w-12 h-12 rounded-lg object-cover cursor-pointer hover:opacity-80 transition-opacity" onerror="this.src='https://placehold.co/48x48/E2E8F0/94A3B8?text=Img'" data-product-id="8">
+                </div>
+            </div>
+
+            <div class="p-5">
+                <!-- Título del producto -->
+                <h2 class="text-xl font-semibold mb-2 leading-snug">Consola de videojuegos R36S de código abierto de 128GB, sistema Linux, pantalla IPS de 3,5 pulgadas, reproductor de vídeo portátil de bolsillo naranja, 64GB, los mejores juegos</h2>
+
+                <!-- Detalles del precio -->
+                <div class="flex items-center justify-start gap-3 mt-4">
+                    <span class="text-2xl font-bold text-red-500">
+                        MXN 613.81
+                    </span>
+                    <span class="text-lg text-gray-400 line-through">
+                        MXN 2394.89
+                    </span>
+                </div>
+                <div class="text-green-600 font-bold text-sm mt-1">
+                    ¡74% de descuento!
+                </div>
+
+                <!-- Botón de compra -->
+                <a href="https://s.click.aliexpress.com/e/_olIGmPT" target="_blank" class="mt-6 w-full inline-flex items-center justify-center bg-blue-600 text-white font-bold py-3 px-6 rounded-full text-lg shadow-md hover:bg-blue-700 transition-colors duration-300 transform hover:scale-105">
+                    Comprar Ahora
+                    <!-- Icono de flecha SVG -->
+                    <svg class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Tarjeta de Producto 9: Auriculares Oneodio Fusion A70 -->
+        <div id="product-card-9" class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-200">
+            <div class="p-4 pb-0">
+                <!-- Imagen principal -->
+                <div class="relative h-64 sm:h-72 overflow-hidden bg-gray-50 rounded-xl mb-4">
+                    <img src="https://i.postimg.cc/cKQjCxDd/S054029d05e314a608eddc25661f9f14c-V.png" alt="Auriculares Oneodio Fusion A70" class="main-image w-full h-full object-contain transition-transform duration-500 ease-in-out cursor-pointer" data-product-id="9" onerror="this.src='https://placehold.co/400x400/E2E8F0/94A3B8?text=Img'">
+                </div>
+
+                <!-- Carrusel de miniaturas -->
+                <div class="flex space-x-1 overflow-x-auto justify-center pb-2">
+                    <img src="https://i.postimg.cc/ZB4QyGgp/S08e754064fc8408a9b2fab5ca0a58ab9-D.png" data-full="https://i.postimg.cc/ZB4QyGgp/S08e754064fc8408a9b2fab5ca0a58ab9-D.png" class="thumbnail-image w-12 h-12 rounded-lg object-cover cursor-pointer hover:opacity-80 transition-opacity" onerror="this.src='https://placehold.co/48x48/E2E8F0/94A3B8?text=Img'" data-product-id="9">
+                    <img src="https://i.postimg.cc/ts6vvRGF/S2472932215f94207a057d6c33ed7716by.png" data-full="https://i.postimg.cc/ts6vvRGF/S2472932215f94207a057d6c33ed7716by.png" class="thumbnail-image w-12 h-12 rounded-lg object-cover cursor-pointer hover:opacity-80 transition-opacity" onerror="this.src='https://placehold.co/48x48/E2E8F0/94A3B8?text=Img'" data-product-id="9">
+                    <img src="https://i.postimg.cc/MM5F0s24/S2563ac83dfdc4da29afd29c9dc25f108-W.png" data-full="https://i.postimg.cc/MM5F0s24/S2563ac83dfdc4da29afd29c9dc25f108-W.png" class="thumbnail-image w-12 h-12 rounded-lg object-cover cursor-pointer hover:opacity-80 transition-opacity" onerror="this.src='https://placehold.co/48x48/E2E8F0/94A3B8?text=Img'" data-product-id="9">
+                    <img src="https://i.postimg.cc/GB17W0bV/S272973f638d444e8aa1f04fb84709df45.png" data-full="https://i.postimg.cc/GB17W0bV/S272973f638d444e8aa1f04fb84709df45.png" class="thumbnail-image w-12 h-12 rounded-lg object-cover cursor-pointer hover:opacity-80 transition-opacity" onerror="this.src='https://placehold.co/48x48/E2E8F0/94A3B8?text=Img'" data-product-id="9">
+                    <img src="https://i.postimg.cc/MvNrYMNW/S32ab8a06618a48dc80.png" data-full="https://i.postimg.cc/MvNrYMNW/S32ab8a06618a48dc80.png" class="thumbnail-image w-12 h-12 rounded-lg object-cover cursor-pointer hover:opacity-80 transition-opacity" onerror="this.src='https://placehold.co/48x48/E2E8F0/94A3B8?text=Img'" data-product-id="9">
+                </div>
+            </div>
+
+            <div class="p-5">
+                <!-- Título del producto -->
+                <h2 class="text-xl font-semibold mb-2 leading-snug">Auriculares bluetooth inalámbricos Oneodio Fusion A70, Hi-Res Audio Over Ear audífonos con microfono para movil monitores de estudio cascos con cable para DJ musica 72H de alta calidad</h2>
+
+                <!-- Detalles del precio -->
+                <div class="flex items-center justify-start gap-3 mt-4">
+                    <span class="text-2xl font-bold text-red-500">
+                        MXN 476.09
+                    </span>
+                    <span class="text-lg text-gray-400 line-through">
+                        MXN 952.16
+                    </span>
+                </div>
+                <div class="text-green-600 font-bold text-sm mt-1">
+                    ¡50% de descuento!
+                </div>
+
+                <!-- Botón de compra -->
+                <a href="https://s.click.aliexpress.com/e/_opRWqBF" target="_blank" class="mt-6 w-full inline-flex items-center justify-center bg-blue-600 text-white font-bold py-3 px-6 rounded-full text-lg shadow-md hover:bg-blue-700 transition-colors duration-300 transform hover:scale-105">
+                    Comprar Ahora
+                    <!-- Icono de flecha SVG -->
+                    <svg class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- Tarjeta de Producto 10: Reproductor de vídeo para coche Hippcron -->
+        <div id="product-card-10" class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-200">
+            <div class="p-4 pb-0">
+                <!-- Imagen principal -->
+                <div class="relative h-64 sm:h-72 overflow-hidden bg-gray-50 rounded-xl mb-4">
+                    <img src="https://i.postimg.cc/CBr4L9VF/S2fa04cc2020940eea215e4688fec5f4b-P.png" alt="Reproductor de vídeo para coche Hippcron" class="main-image w-full h-full object-contain transition-transform duration-500 ease-in-out cursor-pointer" data-product-id="10" onerror="this.src='https://placehold.co/400x400/E2E8F0/94A3B8?text=Img'">
+                </div>
+
+                <!-- Carrusel de miniaturas -->
+                <div class="flex space-x-1 overflow-x-auto justify-center pb-2">
+                    <img src="https://i.postimg.cc/CBr4L9VF/S2fa04cc2020940eea215e4688fec5f4b-P.png" data-full="https://i.postimg.cc/CBr4L9VF/S2fa04cc2020940eea215e4688fec5f4b-P.png" class="thumbnail-image w-12 h-12 rounded-lg object-cover cursor-pointer hover:opacity-80 transition-opacity" onerror="this.src='https://placehold.co/48x48/E2E8F0/94A3B8?text=Img'" data-product-id="10">
+                    <img src="https://i.postimg.cc/8FD4yhHV/S3205d1dfef3242e69fc40dd29a8e5a1e-Y.png" data-full="https://i.postimg.cc/8FD4yhHV/S3205d1dfef3242e69fc40dd29a8e5a1e-Y.png" class="thumbnail-image w-12 h-12 rounded-lg object-cover cursor-pointer hover:opacity-80 transition-opacity" onerror="this.src='https://placehold.co/48x48/E2E8F0/94A3B8?text=Img'" data-product-id="10">
+                    <img src="https://i.postimg.cc/qN2QXm2L/S4141de57ea6c454a84e3aa4e29a4b0db-C.png" data-full="https://i.postimg.cc/qN2QXm2L/S4141de57ea6c454a84e3aa4e29a4b0db-C.png" class="thumbnail-image w-12 h-12 rounded-lg object-cover cursor-pointer hover:opacity-80 transition-opacity" onerror="this.src='https://placehold.co/48x48/E2E8F0/94A3B8?text=Img'" data-product-id="10">
+                    <img src="https://i.postimg.cc/Q9dbDhw4/S5dfe3a02b4ce4a75a01fba1387cd67dbh.png" data-full="https://i.postimg.cc/Q9dbDhw4/S5dfe3a02b4ce4a75a01fba1387cd67dbh.png" class="thumbnail-image w-12 h-12 rounded-lg object-cover cursor-pointer hover:opacity-80 transition-opacity" onerror="this.src='https://placehold.co/48x48/E2E8F0/94A3B8?text=Img'" data-product-id="10">
+                    <img src="https://i.postimg.cc/p59J9k2K/Sb0e42a0663c74a4f97ca540fdd668a6a5.png" data-full="https://i.postimg.cc/p59J9k2K/Sb0e42a0663c74a4f97ca540fdd668a6a5.png" class="thumbnail-image w-12 h-12 rounded-lg object-cover cursor-pointer hover:opacity-80 transition-opacity" onerror="this.src='https://placehold.co/48x48/E2E8F0/94A3B8?text=Img'" data-product-id="10">
+                </div>
+            </div>
+
+            <div class="p-5">
+                <!-- Título del producto -->
+                <h2 class="text-xl font-semibold mb-2 leading-snug">Hippcron-reproductor de vídeo Multimedia para coche, Radio de 7 pulgadas, Carplay inalámbrico y Android Auto, pantalla táctil Universal portátil</h2>
+
+                <!-- Detalles del precio -->
+                <div class="flex items-center justify-start gap-3 mt-4">
+                    <span class="text-2xl font-bold text-red-500">
+                        MXN 420.57
+                    </span>
+                    <span class="text-lg text-gray-400 line-through">
+                        MXN 1067.17
+                    </span>
+                </div>
+                <div class="text-green-600 font-bold text-sm mt-1">
+                    ¡61% de descuento!
+                </div>
+
+                <!-- Botón de compra -->
+                <a href="https://s.click.aliexpress.com/e/_oE74yln" target="_blank" class="mt-6 w-full inline-flex items-center justify-center bg-blue-600 text-white font-bold py-3 px-6 rounded-full text-lg shadow-md hover:bg-blue-700 transition-colors duration-300 transform hover:scale-105">
+                    Comprar Ahora
+                    <!-- Icono de flecha SVG -->
+                    <svg class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Pie de página -->
+    <footer class="text-center text-gray-500 text-sm mt-12 mb-4">
+        &copy; 2025. Todos los derechos reservados.
+    </footer>
+
+    <!-- Estructura del modal (inicialmente oculta) -->
+    <div id="image-modal-overlay" class="modal-overlay">
+        <div class="modal-content">
+            <img id="modal-image" class="w-full h-auto rounded-lg" src="" alt="Imagen Ampliada">
+            <button id="close-modal-button" class="close-button" aria-label="Cerrar">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Obtener referencias a los elementos del DOM
+        const productCards = document.querySelectorAll('[id^="product-card-"]');
+        const modalOverlay = document.getElementById('image-modal-overlay');
+        const modalImage = document.getElementById('modal-image');
+        const closeModalButton = document.getElementById('close-modal-button');
+
+        // Función para abrir el modal
+        function openModal(imageSrc) {
+            modalImage.src = imageSrc;
+            modalOverlay.classList.add('open');
+        }
+
+        // Función para cerrar el modal
+        function closeModal() {
+            modalOverlay.classList.remove('open');
+        }
+
+        // Event listener para cerrar el modal al hacer clic en el botón de cerrar
+        closeModalButton.addEventListener('click', closeModal);
+
+        // Event listener para cerrar el modal al hacer clic fuera de la imagen (en el overlay)
+        modalOverlay.addEventListener('click', (event) => {
+            if (event.target.id === 'image-modal-overlay' || event.target.id === 'modal-image') {
+                closeModal();
+            }
+        });
+
+        // Configurar la galería de imágenes para cada tarjeta de producto
+        productCards.forEach(card => {
+            const mainImage = card.querySelector('.main-image');
+            const thumbnails = card.querySelectorAll('.thumbnail-image');
+
+            // Event listener para cambiar la imagen principal al pasar el mouse por las miniaturas
+            thumbnails.forEach(thumb => {
+                thumb.addEventListener('mouseover', () => {
+                    const newSrc = thumb.getAttribute('data-full');
+                    mainImage.src = newSrc;
+                });
+            });
+
+            // Event listener para abrir el modal al hacer clic en la imagen principal
+            mainImage.addEventListener('click', () => {
+                openModal(mainImage.src);
+            });
+        });
+    </script>
+</body>
+</html>
